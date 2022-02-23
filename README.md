@@ -8,4 +8,3 @@ Project was developed in vanilla javascript, Without any frameworks!
 - Iterate through lists
 - Working with event listeners
 - Working with CSS3: same as transitions, perspective positioning etc.
-`
