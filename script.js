@@ -1,6 +1,52 @@
 let hasFlippedCard = false;
 let first, second;
 let gameLock = false;
+
+
+(function newGame(){
+    createGame();
+
+})();
+function createGame(){
+    const memoryGame = document.querySelector(".memory-game");
+    console.log(memoryGame);
+    for (let i = 1; i < 7; i++){
+        const memoryCard = document.createElement("div");
+        memoryCard.classList.add("memory-card");
+        memoryCard.setAttribute("data-num",i);
+        /*front img */
+        const imgFront = document.createElement("img");
+        imgFront.classList.add("front");
+        imgFront.setAttribute("src","./images/"+ i +".svg");
+        /* back image*/
+        const imgBack = document.createElement("img");
+        imgBack.classList.add("back");
+        imgBack.setAttribute("src","./images/hide.svg");
+        /*Appending the images to the memoryCard */
+        memoryCard.append(imgFront);
+        memoryCard.append(imgBack);
+        memoryGame.append(memoryCard);
+    }
+
+    for (let i = 1; i < 7; i++){//second loop for the duplicate images
+        const memoryCard = document.createElement("div");
+        memoryCard.classList.add("memory-card");
+        memoryCard.setAttribute("data-num",i);
+        /*front img */
+        const imgFront = document.createElement("img");
+        imgFront.classList.add("front");
+        imgFront.setAttribute("src","./images/"+ i +".svg");
+        /* back image*/
+        const imgBack = document.createElement("img");
+        imgBack.classList.add("back");
+        imgBack.setAttribute("src","./images/hide.svg");
+        /*Appending the images to the memoryCard */
+        memoryCard.append(imgFront);
+        memoryCard.append(imgBack);
+        memoryGame.append(memoryCard);
+    }
+}
+
 const cards = document.querySelectorAll(".memory-card");
 
 (function shuffleCards(){
@@ -61,12 +107,13 @@ function newGame(){
             count++;
         }
     })
-    if (count == 12){ 
+    if (count == 12){
         setTimeout(() => {
-            let val = confirm("Congrats you have found all the cards!! press ok to restart the game");
-            val ? location.reload() : true;
+            let val = confirm("Congrats you have found all the cards, press ok to restart the game");
+            val ? window.location.reload() : true;
         },1000)
     }
 }
+
 cards.forEach((item) => item.addEventListener('click', checkCardFlip));
 
